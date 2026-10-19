@@ -1,0 +1,19 @@
+{
+  "id": "discord-rich-presence",
+  "name": "Discord Rich Presence",
+  "version": "1.0.0",
+  "description": "Shows the track you are listening to on your Discord profile. Display only: it never controls playback.",
+  "author": "SoundKloud",
+  "main": "index.js",
+  "hooks": ["onTrackChange", "onPlay", "onPause"],
+  "settings": [
+    {
+      "key": "clientId",
+      "label": "Discord application ID",
+      "kind": "string",
+      "placeholder": "123456789012345678",
+      "default": ""
+    }
+  ],
+  "enabledByDefault": false
+}

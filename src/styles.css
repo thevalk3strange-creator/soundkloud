@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #8b5cf6;
+    --accent-rgb: 139 92 246;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #07070b;
+    color: #f4f4f7;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    user-select: none;
+    cursor: default;
+  }
+
+  input,
+  textarea,
+  code,
+  .select-all {
+    user-select: text;
+  }
+
+  ::selection {
+    background: rgb(var(--accent-rgb) / 0.35);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent-rgb) / 0.55);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-white/[0.08] bg-white/[0.025] p-4;
+  }
+
+  .chip-button {
+    @apply flex items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 text-[11px] text-white/55 transition hover:border-white/20 hover:bg-white/[0.07] hover:text-white/85 active:scale-[0.98];
+  }
+
+  .field {
+    @apply h-8 w-full min-w-0 rounded-md border border-white/10 bg-black/25 px-2.5 text-[11.5px] text-white/80 outline-none transition placeholder:text-white/20 focus:border-accent/60 focus:bg-black/35;
+  }
+
+  .logs {
+    @apply max-h-40 overflow-y-auto rounded-xl border border-white/[0.07] bg-black/25 py-2 font-mono text-[10.5px] leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .settings-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+  }
+
+  .settings-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .settings-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .settings-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.22);
+    background-clip: padding-box;
+  }
+}
+
+/* Range inputs: a thin track that fills with the accent color as it moves. */
+input[type="range"].range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].range::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    rgb(var(--accent-rgb)) 0%,
+    rgb(var(--accent-rgb)) var(--fill, 0%),
+    rgba(255, 255, 255, 0.13) var(--fill, 0%),
+    rgba(255, 255, 255, 0.13) 100%
+  );
+}
+
+input[type="range"].range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+input[type="range"].range:hover::-webkit-slider-thumb,
+input[type="range"].range:focus-visible::-webkit-slider-thumb,
+input[type="range"].range:active::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+input[type="range"].range:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+input[type="range"].range-seek {
+  width: 100%;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 4px;
+}
