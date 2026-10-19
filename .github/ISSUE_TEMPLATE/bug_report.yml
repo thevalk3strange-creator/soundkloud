@@ -1,0 +1,63 @@
+name: Bug report
+description: Something is broken or behaves differently from Safari
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please search existing issues first, and never paste cookies, tokens or account identifiers.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A short description of the actual behaviour.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app
+        2. Play a track
+        3. Press the media key
+        4. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: build
+    attributes:
+      label: How are you running SoundKloud?
+      options:
+        - pnpm tauri dev
+        - Built .app bundle
+        - Built .dmg
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and Mac model
+      placeholder: macOS 15.1, MacBook Pro M3
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Terminal output from the dev build, or Settings → Recent plugin activity.
+      render: shell
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This is not a request to download tracks, bypass DRM, or unlock region-restricted content.
+          required: true

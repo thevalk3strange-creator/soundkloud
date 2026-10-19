@@ -235,7 +235,8 @@ soundkloud/
 | Hiện tượng | Cách xử lý |
 | --- | --- |
 | Màn hình “SoundCloud didn’t load” | Kiểm tra mạng, bấm **Reload SoundCloud**. Nếu vẫn lỗi, mở soundcloud.com bằng Safari để xác nhận mạng. |
-| Đăng nhập Google/Apple không mở | Popup được mở thành cửa sổ Tauri riêng; kiểm tra cửa sổ phía sau. Đóng popup sau khi đăng nhập. |
+| Đăng nhập Google/Apple không mở | Popup OAuth mở thành cửa sổ WebKit thật, có thể nằm phía sau cửa sổ chính. Sau khi đăng nhập xong popup tự đóng. |
+| Google đòi passkey / Touch ID | WKWebView của app bên thứ ba không có entitlement passkey của Apple. Chọn **Try another way** → nhập mật khẩu hoặc xác nhận trên điện thoại; hoặc đăng nhập SoundCloud bằng email + mật khẩu. |
 | Không có phím media | Bấm play trong SoundKloud một lần. Đảm bảo không có app khác đang chiếm Now Playing; kiểm tra Control Center. |
 | Discord không hiện activity | Discord desktop phải đang chạy; Application ID đúng 15+ chữ số; xem log trong Settings. |
 | App bị chặn khi mở | Xem mục **Gatekeeper** ở trên. |
@@ -245,6 +246,8 @@ soundkloud/
 ## 10. Giới hạn có chủ đích
 
 - Không tải nhạc, không tách luồng audio, không vượt DRM/ToS của SoundCloud.
+- Không vượt chặn vùng: track báo “Not available in Vietnam” là giới hạn cấp phép phía server.
+- Passkey/Touch ID không dùng được trong WebView (thiếu entitlement `com.apple.developer.web-browser.public-key-credential` của Apple).
 - Không lưu mật khẩu; đăng nhập chỉ trong WebView.
 - Không gửi dữ liệu người dùng ra ngoài, trừ khi người dùng bật plugin Discord (và Discord đang chạy cục bộ).
 - Plugin không được truy cập mạng; mọi tích hợp mạng phải do host Rust cung cấp.
